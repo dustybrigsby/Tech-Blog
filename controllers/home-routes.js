@@ -81,7 +81,7 @@ router.get('/post/:id', async (req, res) => {
         const post = postData.get({ plain: true });
         res.render('single-post', {
             post,
-            loggedIn: req.session.loggedIn
+            logged_in: req.session.logged_in,
         });
 
     } catch (err) {
@@ -90,12 +90,21 @@ router.get('/post/:id', async (req, res) => {
     };
 });
 
-// Redirect to homepage if user is logged in and they try going to the login page
+// Redirect to login page if user not logged in
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
         return;
     }
+    res.render('login');
+});
+
+// Redirect to the homepage if user is logged in and tries to go to login page
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    };
     res.render('login');
 });
 
