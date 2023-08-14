@@ -113,4 +113,53 @@ router.post('/login', async (req, res) => {
     };
 });
 
+// Logout
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+});
+
+// Update user by id
+router.put('/:id', async (req, res) => {
+    try {
+        const userData = await User.update(req.body, {
+            individualHooks: true,
+            where: {
+                id: req.params.id
+            }
+        });
+        if (!userData[0]) {
+            res.status(404).json({ message: 'No User found with this id.' });
+            return;
+        }
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json(err);
+    };
+});
+
+// Delete user by id
+router.delete('/:id', async (req, res) => {
+    try {
+        const userData = await User.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        if (!userData) {
+            res.status(404).json({ message: 'No User found with this id.' });
+            return;
+        }
+        res.json(userData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    };
+});
+
 module.exports = router;
