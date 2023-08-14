@@ -17,6 +17,47 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Get single user by id
+router.get('/:id', async (req, res) => {
+    try {
+        const userData = await User.findOne({
+            where: {
+                id: req.params.id
+            },
+            attributes: {
+                exclude: ['password']
+            },
+            include: [
+                {
+                    model: Post,
+                    attributes: [
+                        'id',
+                        'title',
+                        'post_text',
+                        'created_at',
+                    ]
+                },
+                {
+                    model: Comment,
+                    attributes: [
+                        'id',
+                        'comment_text',
+                        'created_at'
+                    ]
+                }
+            ],
+        });
+
+        if (!userData) {
+            res.status(404).json({ message: 'No User found with this id.' });
+            return;
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
 
 
