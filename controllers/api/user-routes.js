@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const withAuth = require('../utils/auth');
-const { User, Post, Comment } = require('../models');
+const withAuth = require('../../utils/auth');
+const { User, Post, Comment } = require('../../models');
 
 // Get all users
 router.get('/', async (req, res) => {
@@ -11,7 +11,8 @@ router.get('/', async (req, res) => {
             },
             order: [['name', 'ASC']],
         });
-        const users = userData => res.json(userData);
+        res.json(userData);
+
     } catch (err) {
         res.status(500).json(err);
     }
@@ -52,6 +53,7 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ message: 'No User found with this id.' });
             return;
         }
+        res.json(userData);
 
     } catch (err) {
         console.log(err);
