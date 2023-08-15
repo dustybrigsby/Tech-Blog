@@ -44,7 +44,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 // Get a single post by id
-router.get('/post/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findOne({
             where: {
@@ -91,15 +91,6 @@ router.get('/post/:id', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     };
-});
-
-// Redirect to the login page if user not logged in
-router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
 });
 
 module.exports = router;
