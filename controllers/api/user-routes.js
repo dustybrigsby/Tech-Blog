@@ -3,7 +3,7 @@ const withAuth = require('../../utils/auth');
 const { User, Post, Comment } = require('../../models');
 
 // Get all users
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const userData = await User.findAll({
             attributes: {
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single user by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const userData = await User.findOne({
             where: {
@@ -62,7 +62,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create new user
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const userData = await User.create({
             username: req.body.username,
@@ -116,7 +116,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.post('/logout', (req, res) => {
+router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
@@ -127,7 +127,7 @@ router.post('/logout', (req, res) => {
 });
 
 // Update user by id
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const userData = await User.update(req.body, {
             individualHooks: true,
@@ -146,7 +146,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete user by id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const userData = await User.destroy({
             where: {

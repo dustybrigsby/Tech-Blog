@@ -3,7 +3,7 @@ const withAuth = require('../../utils/auth');
 const { User, Post, Comment } = require('../../models');
 
 // Get all posts
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
             attributes: [
@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single post by id
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findOne({
             where: {
@@ -129,7 +129,7 @@ router.put('/:id', withAuth, async (req, res) => {
 });
 
 // Delete post by id
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.destroy({
             where: {
