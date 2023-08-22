@@ -14,7 +14,6 @@ async function signupForm(event) {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        //check if the response status
         if (response.ok) {
             console.log('success');
             alert('New user created you can now log in');
