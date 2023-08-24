@@ -4,6 +4,9 @@ async function signupForm(event) {
     const username = document.querySelector('#signup-username').value.trim();
     const password = document.querySelector('#signup-password').value.trim();
 
+    // console.log('username:', username);
+    // console.log('password:', password);
+
     if (username && password) {
         const response = await fetch('/api/users', {
             method: 'POST',
@@ -15,7 +18,7 @@ async function signupForm(event) {
         });
 
         if (response.ok) {
-            console.log('success');
+            console.log('New user created');
             alert('New user created you can now log in');
             document.location.reload();
         } else {
@@ -27,15 +30,15 @@ async function signupForm(event) {
 async function loginForm(event) {
     event.preventDefault();
 
-    const username = document.querySelector('#login-username').value.trim();
-    const password = document.querySelector('#login-password').value.trim();
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value.trim();
 
     if (username && password) {
         const response = await fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({
-                username,
-                password
+                username: username,
+                password: password,
             }),
             headers: { 'Content-Type': 'application/json' }
         });

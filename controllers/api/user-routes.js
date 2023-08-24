@@ -62,7 +62,8 @@ router.get('/:id', withAuth, async (req, res) => {
 });
 
 // Create new user
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
+    console.log(req.body);
     try {
         const userData = await User.create({
             username: req.body.username,
@@ -83,6 +84,8 @@ router.post('/', withAuth, async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
+    console.log(req.body);
+
     try {
         const userData = await User.findOne({
             where: {

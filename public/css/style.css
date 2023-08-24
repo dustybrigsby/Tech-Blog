@@ -1,0 +1,7 @@
+/* customized styling */
+:root {
+  --red: rgb(237, 141, 141);
+  --green: rgb(174, 218, 174);
+  --shadow: darkgray;
+  --button: rgb(9, 113, 113);
+}

@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 
         const posts = postData.map((post) => post.get({ plain: true }));
 
-        res.render('homepage', {
+        res.render('home', {
             posts,
             logged_in: req.session.logged_in,
         });
@@ -87,15 +87,6 @@ router.get('/post/:id', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     };
-});
-
-// Redirect to login page if user not logged in
-router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
-    res.render('login');
 });
 
 // Redirect to the homepage if user is logged in and tries to go to login page
