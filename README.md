@@ -40,13 +40,16 @@ While in the root directory of the application, enter "npm install" into the ter
 
 ## Usage
 
-<!-- Usage -->
+Sign up by clicking on 'Login' then enter a username and password in the signup section. Then you'll be able to log in using the login section.
+Once logged in you can create and edit posts and also create comments on posts by clicking on the titles.
 
 <a name="screenshot"></a>
 
 ## Screenshot
 
-[Walkthrough Video](https://youtu.be/z8Xr2UOKVBA)
+[Screenshot Homepage](./assets/images/ss-1.png)
+[Screenshot Login](./assets/images/ss-2.png)
+[Screenshot Dashboard](./assets/images/ss-3.png)
 
 <a name="license"></a>
 
@@ -61,7 +64,7 @@ See [LICENSE](/LICENSE) file in contatining directory
 
 Used the references and tutorials from:
 
-- Multiple activities from 13-ORM class lessons and files.
+- Multiple activities from 14-MVC class lessons and files.
 - [The MySQL Documentation](https://dev.mysql.com/doc/)
 - [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [W3 Schools](https://www.w3schools.com/mysql/default.asp)
@@ -78,7 +81,7 @@ N/A
 
 ## Questions?
 
-[E-commerce Back End GitHub Repository](https://github.com/dustybrigsby/E-commerce-Back-End)
+[Tech Blog GitHub Repository](https://github.com/dustybrigsby/Tech-Blog)
 
 If not found there, you can email me at:
 
