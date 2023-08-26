@@ -9,12 +9,18 @@ router.get('/', async (req, res) => {
                 'id',
                 'title',
                 'post_text',
-                'created_at',
+                'updated_at',
             ],
             include: [
                 {
                     model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    attributes: [
+                        'id',
+                        'comment_text',
+                        'post_id',
+                        'user_id',
+                        'updated_at'
+                    ],
                     include: {
                         model: User,
                         attributes: ['username']
@@ -25,14 +31,14 @@ router.get('/', async (req, res) => {
                     attributes: ['username']
                 },
             ],
-            order: [['created_at', 'DESC']],
+            order: [['updated_at', 'DESC']],
         });
 
         const posts = postData.map((post) => post.get({ plain: true }));
 
         res.render('home', {
             posts,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -50,7 +56,7 @@ router.get('/post/:id', async (req, res) => {
                 'id',
                 'title',
                 'post_text',
-                'created_at'
+                'updated_at'
             ],
             include: [
                 {
@@ -60,7 +66,7 @@ router.get('/post/:id', async (req, res) => {
                         'comment_text',
                         'post_id',
                         'user_id',
-                        'created_at'
+                        'updated_at'
                     ],
                     include: {
                         model: User,
@@ -80,7 +86,7 @@ router.get('/post/:id', async (req, res) => {
         const post = postData.get({ plain: true });
         res.render('single-post', {
             post,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
 
     } catch (err) {
@@ -91,7 +97,7 @@ router.get('/post/:id', async (req, res) => {
 
 // Redirect to the homepage if user is logged in and tries to go to login page
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
+    if (req.session.loggedIn) {
         res.redirect('/');
         return;
     };

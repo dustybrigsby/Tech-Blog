@@ -16,4 +16,4 @@ async function deletePost(event) {
     }
 }
 
-document.querySelector('.delete-post-btn').addEventListener('click', deletePost);
+document.querySelector('#delete-post-btn').addEventListener('click', deletePost);

@@ -7,7 +7,7 @@ async function updatePost(event) {
         window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch(`/api/post${id}`, {
+    const response = await fetch(`/api/post/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             title: title,
@@ -25,4 +25,4 @@ async function updatePost(event) {
     }
 }
 
-document.querySelector('.update-post-form').addEventListener('submit', updatePost);
+document.querySelector('#update-post-form').addEventListener('submit', updatePost);

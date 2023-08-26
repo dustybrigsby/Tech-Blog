@@ -13,23 +13,30 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
 
   <body>
 
-    <header class="container-fluid">
-      <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <header class="container-fluid bg-dark">
+      <nav class="navbar navbar-expand-xl navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">The Tech Blog</a>
 
-          <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+          <ul class="nav">
             {{#if loggedIn}}
               <li class="nav-item">
-                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a
+                  class="nav-link blog-link"
+                  href="/dashboard"
+                >Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <a
+                  id="logout"
+                  class="nav-link blog-link"
+                  href="/"
+                >Logout</a>
               </li>
             {{else}}
               <li class="nav-item">
@@ -41,7 +48,7 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="container-fluid pt-3">
       {{{body}}}
     </main>
 

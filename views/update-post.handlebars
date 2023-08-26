@@ -1,9 +1,9 @@
-<section>
-  <h2>Update a Post</h2>
+<section class="container">
+  <h2>Update Post</h2>
 
-  <form class="update-post-form">
-    <div>
-      <label for="post-title">Title</label>
+  <form id="update-post-form">
+    <div class="py-2">
+      <label for="post-title" class="align-top">Title</label>
       <input
         type="text"
         id="post-title"
@@ -12,15 +12,27 @@
       />
     </div>
     <div>
-      <label for="post-text">Post</label>
+      <label for="post-text" class="align-top">Post</label>
       <textarea
         id="post-text"
         name="post-text"
+        class="form-control"
       >{{post.post_text}}</textarea>
     </div>
-    <button type="submit" class="btn">Update with Changes</button>
-    <button type="button" class="delete-post-btn">Delete this post</button>
+    <div class="pt-3">
+      <button
+        type="submit"
+        id="update-post-btn"
+        class="btn btn-primary"
+      >Update with Changes</button>
+      <button
+        type="button"
+        id="delete-post-btn"
+        class="btn btn-danger"
+      >Delete this post</button>
+    </div>
   </form>
 </section>
 
 <script src="/js/update-post.js"></script>
+<script src="/js/delete-post.js"></script>

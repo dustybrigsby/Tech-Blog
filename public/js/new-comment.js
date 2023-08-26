@@ -1,5 +1,5 @@
-async function newComment(event) {
-    event.preventDefault();
+async function newComment(e) {
+    e.preventDefault();
 
     const commentText = document.querySelector('textarea[name="comment-body"]').value.trim();
 
@@ -8,11 +8,11 @@ async function newComment(event) {
     ];
 
     if (commentText) {
-        const response = await fetch('/api/comments', {
+        const response = await fetch('/api/comment', {
             method: 'POST',
             body: JSON.stringify({
+                comment_text: commentText,
                 post_id: postId,
-                comment_text: commentText
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -22,9 +22,10 @@ async function newComment(event) {
         if (response.ok) {
             document.location.reload();
         } else {
+
             alert(response.statusText);
         }
     }
 }
 
-document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
+document.querySelector('#comment-form').addEventListener('submit', newComment);

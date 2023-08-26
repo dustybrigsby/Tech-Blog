@@ -1,18 +1,21 @@
-{{#if posts.length}}
-<section>
-  <h2>My Posts</h2>
-  <ol class="post-list">
-    {{#each posts as |post|}}
-    <li>
-      {{> dashboard-post-info post}}      
-    </li>
-    {{/each}}
-  </ol>
-</section>
-{{else}}
-<section>
-  <h3>I haven't made any posts yet.</h3>
-</section>
-{{/if}}
+<div class="container">
+  {{#if posts.length}}
+  <section>
+    <h2>My Posts</h2>
+    <ul class="post-list">
+      {{#each posts as |post|}}
+      <li>
+        {{> dashboard-post-details post}}      
+      </li>
+      {{/each}}
+    </ul>
+  </section>
+  {{else}}
+  <section class="py-3">
+    <h5 class="text-secondary">I haven't made any posts yet.</h5>
+  </section>
+  {{/if}}
 
-<button type="submit"><a href="/dashboard/new">Add New Post</a></button>
+  <a href="/dashboard/new"><button type="submit" class="btn btn-primary">Add New Post</button></a>
+
+</div>

@@ -3,14 +3,14 @@ const withAuth = require('../../utils/auth');
 const { User, Post, Comment } = require('../../models');
 
 // Get all posts
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
             attributes: [
                 'id',
                 'title',
                 'post_text',
-                'created_at',
+                'updated_at',
             ],
             include: [
                 {
@@ -24,7 +24,7 @@ router.get('/', withAuth, async (req, res) => {
                         'comment_text',
                         'post_id',
                         'user_id',
-                        'created_at',
+                        'updated_at',
                     ],
                     include: {
                         model: User,
@@ -32,7 +32,7 @@ router.get('/', withAuth, async (req, res) => {
                     }
                 },
             ],
-            order: [['created_at', 'DESC']],
+            order: [['updated_at', 'DESC']],
         });
         res.json(postData);
     } catch (err) {
@@ -41,7 +41,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 // Get single post by id
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const postData = await Post.findOne({
             where: {
@@ -51,7 +51,7 @@ router.get('/:id', withAuth, async (req, res) => {
                 'id',
                 'title',
                 'post_text',
-                'created_at',
+                'updated_at',
             ],
             include: [
                 {
@@ -65,7 +65,7 @@ router.get('/:id', withAuth, async (req, res) => {
                         'comment_text',
                         'post_id',
                         'user_id',
-                        'created_at',
+                        'updated_at',
                     ],
                     include: {
                         model: User,

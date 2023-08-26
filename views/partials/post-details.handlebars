@@ -1,0 +1,19 @@
+<article>
+  <div class="row">
+    <a href="/post/{{id}}" class="blog-link">
+      <div class="bg-light p-3 border rounded">
+        {{title}}
+      </div>
+    </a>
+  </div>
+  <div class="container-fluid">
+    <div class="px-3">
+      <p class="blockquote-footer pt-2 mt-0">
+        by
+        {{user.username}}
+        on
+        {{format_date updated_at}}</p>
+      <p>{{post_text}}</p>
+    </div>
+  </div>
+</article>

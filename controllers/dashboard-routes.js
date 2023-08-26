@@ -13,7 +13,7 @@ router.get('/', withAuth, async (req, res) => {
                 'id',
                 'title',
                 'post_text',
-                'created_at',
+                'updated_at',
             ],
             include: [
                 {
@@ -22,21 +22,30 @@ router.get('/', withAuth, async (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    attributes: [
+                        'id',
+                        'comment_text',
+                        'post_id',
+                        'user_id',
+                        'updated_at'
+                    ],
                     include: {
                         model: User,
                         attributes: ['username'],
                     }
                 }
             ],
-            order: [['created_at', 'DESC']],
+            order: [[
+                'updated_at',
+                'DESC'
+            ]],
         });
 
         const posts = postData.map((post) => post.get({ plain: true }));
 
         res.render('dashboard', {
             posts,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -44,7 +53,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 // Get a single post by id
-router.get('/post/:id', withAuth, async (req, res) => {
+router.get('/update/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findOne({
             where: {
@@ -54,7 +63,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
                 'id',
                 'title',
                 'post_text',
-                'created_at'
+                'updated_at',
             ],
             include: [
                 {
@@ -64,11 +73,14 @@ router.get('/post/:id', withAuth, async (req, res) => {
                         'comment_text',
                         'post_id',
                         'user_id',
-                        'created_at'
+                        'updated_at'
                     ],
                     include: {
                         model: User,
-                        attributes: ['username']
+                        attributes: [
+                            'id',
+                            'username',
+                        ]
                     }
                 },
                 {
@@ -82,15 +94,20 @@ router.get('/post/:id', withAuth, async (req, res) => {
             return;
         }
         const post = postData.get({ plain: true });
-        res.render('single-post', {
+        res.render('update-post', {
             post,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
 
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     };
+});
+
+// Make a new post
+router.get('/new', withAuth, (req, res) => {
+    res.render('new-post');
 });
 
 module.exports = router;

@@ -1,0 +1,13 @@
+<div class="container">
+  {{#each this}}
+    <section class="row">
+      <div class="col-2 text-end text-secondary">
+        {{user.username}}</br>
+        {{format_date updated_at}}
+      </div>
+      <div class="col-10">
+        {{comment_text}}
+      </div>
+    </section>
+  {{/each}}
+</div>

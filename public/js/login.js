@@ -1,14 +1,11 @@
-async function signupForm(event) {
-    event.preventDefault();
+async function signupForm(e) {
+    e.preventDefault();
 
-    const username = document.querySelector('#signup-username').value.trim();
-    const password = document.querySelector('#signup-password').value.trim();
-
-    // console.log('username:', username);
-    // console.log('password:', password);
+    const username = document.getElementById('signup-username').value.trim();
+    const password = document.getElementById('signup-password').value.trim();
 
     if (username && password) {
-        const response = await fetch('/api/users', {
+        const response = await fetch('/api/user', {
             method: 'POST',
             body: JSON.stringify({
                 username,
@@ -27,29 +24,32 @@ async function signupForm(event) {
     }
 }
 
-async function loginForm(event) {
-    event.preventDefault();
+async function loginForm(e) {
+    e.preventDefault();
 
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value.trim();
 
     if (username && password) {
-        const response = await fetch('/api/users/login', {
+        const response = await fetch('/api/user/login', {
             method: 'POST',
             body: JSON.stringify({
-                username: username,
-                password: password,
+                username,
+                password,
             }),
             headers: { 'Content-Type': 'application/json' }
         });
 
+        console.log('response:', response);
+
         if (response.ok) {
-            document.location.replace('/dashboard');
+            console.log('User logged in.');
+            document.location.assign('/dashboard');
         } else {
             alert(response.statusText);
         }
     }
 }
 
-document.querySelector('.signup-form').addEventListener('submit', signupForm);
-document.querySelector('.login-form').addEventListener('submit', loginForm);
+document.getElementById('signup-form').addEventListener('submit', signupForm);
+document.getElementById('login-form').addEventListener('submit', loginForm);

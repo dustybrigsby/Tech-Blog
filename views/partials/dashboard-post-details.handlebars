@@ -1,0 +1,18 @@
+<article>
+  <div class="row">
+    <a href="/dashboard/update/{{id}}" class="blog-link">
+      <div class="bg-light p-3">
+        {{title}}
+      </div>
+    </a>
+  </div>
+  <div class="container-fluid">
+    <div class="px-3">
+      <p>{{post_text}}</p>
+      <p class="blockquote-footer pt-2">
+        {{user.username}}
+        on
+        {{format_date updated_at}}</p>
+    </div>
+  </div>
+</article>

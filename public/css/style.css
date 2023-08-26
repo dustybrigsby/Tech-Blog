@@ -5,3 +5,15 @@
   --shadow: darkgray;
   --button: rgb(9, 113, 113);
 }
+
+.blog-link {
+  color: cornflowerblue;
+}
+
+.blog-link:hover {
+  color: cadetblue;
+}
+
+textarea .form-control {
+  height: 20vh;
+}

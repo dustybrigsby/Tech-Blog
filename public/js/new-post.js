@@ -7,7 +7,7 @@ async function newPost(event) {
     const response = await fetch(`/api/post`, {
         method: 'POST',
         body: JSON.stringify({
-            title: title,
+            title,
             post_text: postText,
         }),
         headers: {
@@ -22,4 +22,4 @@ async function newPost(event) {
     }
 }
 
-document.querySelector('.new-post-form').addEventListener('submit', newPost);
+document.querySelector('#new-post-form').addEventListener('submit', newPost);
