@@ -40,6 +40,8 @@ While in the root directory of the application, enter "npm install" into the ter
 
 ## Usage
 
+[Deployed App](https://pacific-peak-44339-1a33636afa18.herokuapp.com/)
+
 Sign up by clicking on 'Login' then enter a username and password in the signup section. Then you'll be able to log in using the login section.
 Once logged in you can create and edit posts and also create comments on posts by clicking on the titles.
 
